@@ -1,3 +1,0 @@
-/home/karl/src/class/examples/week2/build/CMakeFiles/rebuild_cache.dir
-/home/karl/src/class/examples/week2/build/CMakeFiles/edit_cache.dir
-/home/karl/src/class/examples/week2/build/CMakeFiles/inclass.dir
