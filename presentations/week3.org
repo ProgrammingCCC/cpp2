@@ -1,0 +1,21 @@
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+title: C++ 2 Week 3
+#+author: kstatz@colum.edu
+* Inheritance
+Inheritance in Object Oriented Programming is a way to extend class definitions without modifying the original class. People have come up with all sorts of insane ways to use inheritance and polymorphism to do insane, evil, dastardly but overall brilliant things
+* Basic Inheritance
+Inheritance is usually talked about in terms of Sub and Super classes. The Super class is also called the Parent class by some, often misguided, OOP programmers
+#+BEGIN_SRC plantuml file: inheritanc.png
+abstract class SuperClass
+class Subclass
+
+SubClass <|-- SuperClass
+#+END_SRC
+* Basic Concepts
+Abstract classes arent a "thing" in c++ in as much as they are able to be enforced by the language. They are Entirely enforced by convention. An abstract class is a class that has abstract members. They are generally marked as AbstractClassName to tell whoever is inheriting from them that they will need to implement some things.
+
+Virtual members are members that can be overriden by sub classes.
+
+members marked as protected are treated as private in the sub class.
+* Multiple Inheritance
+Multiple Inheritance is supported by c++. This powerful feature should be used with extreme caution. It can get you out of a jam but conceptually makes no sense if we think about inheritance in the traditional way. In what way can a thing be a fruit and an automobile?

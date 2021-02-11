@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>C++ Week 2</title>
+<meta name="author" content="Karl Statz"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="/home/karl/.emacs.d/.local/straight/build-27.1/revealjs/dist/reveal.css"/>
+
+<link rel="stylesheet" href="/home/karl/.emacs.d/.local/straight/build-27.1/revealjs/dist/theme/black.css" id="theme"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide">
+<h1 class="title">C++ Week 2</h1><h2 class="author">Karl Statz</h2><p class="date">Created: 2021-02-05 Fri 22:27</p>
+</section>
+<section id="table-of-contents-section">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-1">1. Variables</a></li>
+<li><a href="#/slide-2">2. functions</a></li>
+<li><a href="#/slide-3">3. collections</a></li>
+<li><a href="#/slide-4">4. Local Development</a>
+<ul>
+<li><a href="#/slide-4-1">4.1. CMake</a>
+<ul>
+<li><a href="#/slide-4-1-1">4.1.1. Best Practices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<section>
+<section id="slide-1">
+<h2 id="1"><span class="section-number-2">1</span> Variables</h2>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #3679D8;">int</span> <span style="color: #86e7d7;">x</span> = <span style="color: #D85F00; font-weight: bold;">10</span>;
+<span style="color: #3679D8;">long</span> <span style="color: #86e7d7;">z</span> = <span style="color: #D85F00; font-weight: bold;">1000000</span>;
+<span style="color: #3679D8;">double</span> <span style="color: #86e7d7;">y</span> = <span style="color: #D85F00; font-weight: bold;">1.1111111</span>;
+<span style="color: #3679D8;">float</span> <span style="color: #86e7d7;">f</span> = <span style="color: #D85F00; font-weight: bold;">1.11</span>;
+</pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-2">
+<h2 id="2"><span class="section-number-2">2</span> functions</h2>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #767676; font-style: italic;">// </span><span style="color: #767676; font-style: italic;">function that returns nothing and takes in no arguments</span>
+<span style="color: #3679D8;">void</span> <span style="color: #D8B941;">foo</span><span style="color: #3679D8;">()</span>;
+
+<span style="color: #767676; font-style: italic;">// </span><span style="color: #767676; font-style: italic;">function that returns something</span>
+<span style="color: #3679D8;">int</span> <span style="color: #D8B941;">foo</span><span style="color: #3679D8;">()</span>;
+
+<span style="color: #767676; font-style: italic;">// </span><span style="color: #767676; font-style: italic;">overloaded function</span>
+<span style="color: #3679D8;">int</span> <span style="color: #D8B941;">foo</span><span style="color: #3679D8;">(</span><span style="color: #3679D8;">int</span> <span style="color: #86e7d7;">x</span><span style="color: #3679D8;">)</span>;
+
+<span style="color: #767676; font-style: italic;">// </span><span style="color: #767676; font-style: italic;">overloaded foo with a default argument</span>
+<span style="color: #3679D8;">int</span> <span style="color: #D8B941;">foo</span><span style="color: #3679D8;">(</span><span style="color: #3679D8;">int</span> <span style="color: #86e7d7;">x</span>, <span style="color: #3679D8;">int</span> <span style="color: #86e7d7;">y</span> = <span style="color: #D85F00; font-weight: bold;">10</span><span style="color: #3679D8;">)</span>;
+</pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-3">
+<h2 id="3"><span class="section-number-2">3</span> collections</h2>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #767676; font-style: italic;">//</span><span style="color: #767676; font-style: italic;">arrays</span>
+<span style="color: #767676; font-style: italic;">//</span><span style="color: #767676; font-style: italic;">fixed sized collection</span>
+<span style="color: #3679D8;">int</span> <span style="color: #86e7d7;">x</span><span style="color: #3679D8;">[</span><span style="color: #D85F00; font-weight: bold;">10</span><span style="color: #3679D8;">]</span> = <span style="color: #3679D8;">{</span><span style="color: #D85F00; font-weight: bold;">1</span>, <span style="color: #D85F00; font-weight: bold;">2</span>, <span style="color: #D85F00; font-weight: bold;">3</span>, <span style="color: #D85F00; font-weight: bold;">4</span>, <span style="color: #D85F00; font-weight: bold;">5</span>, <span style="color: #D85F00; font-weight: bold;">6</span>, <span style="color: #D85F00; font-weight: bold;">7</span>, <span style="color: #D85F00; font-weight: bold;">8</span>, <span style="color: #D85F00; font-weight: bold;">9</span>, <span style="color: #D85F00; font-weight: bold;">10</span><span style="color: #3679D8;">}</span>;
+
+<span style="color: #767676; font-style: italic;">//</span><span style="color: #767676; font-style: italic;">vector (make sure you include &lt;vector&gt;)</span>
+<span style="color: #767676; font-style: italic;">//</span><span style="color: #767676; font-style: italic;">a variable sized, indexed collection</span>
+std::vector&lt;<span style="color: #3679D8;">int</span>&gt; myInts = std::vector&lt;<span style="color: #3679D8;">int</span>&gt;<span style="color: #3679D8;">()</span>;
+</pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-4">
+<h2 id="4"><span class="section-number-2">4</span> Local Development</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+</section>
+<section id="slide-4-1">
+<h3 id="4-1"><span class="section-number-3">4.1</span> CMake</h3>
+<p>
+Cmake is a build system for building c/c++ projects. It&rsquo;s primary job is to generate the appropriate make file for a certain project. I chose it because, unlike vanilla make, it has easy to remember syntax and is generally human readable.
+</p>
+</section>
+<section id="slide-4-1-1">
+<h4 id="4-1-1"><span class="section-number-4">4.1.1</span> Best Practices</h4>
+<div class="outline-text-4" id="text-4-1-1">
+</div>
+<ol class="org-ol">
+<li><a id="4-1-1-1"></a>create a build/ directory adjacent to your src/ directory. This keeps any build cruft contained and easy to delete<br /></li>
+<li><a id="4-1-1-2"></a>run all cmake commands from the build/ directory. running cmake ../ runs the command in the parent directory<br /></li>
+<li><a id="4-1-1-3"></a>add the build/ directory to your .gitignore so build artefacts arent committed.<br /></li>
+<li><a id="4-1-1-4"></a>after you run cmake and generate the build scripts, you compile your code with running `make` in the build directory<br /></li>
+</ol>
+</section>
+</section>
+</div>
+</div>
+<script src="/home/karl/.emacs.d/.local/straight/build-27.1/revealjs/dist/reveal.js"></script>
+<script src="/home/karl/.emacs.d/.local/straight/build-27.1/revealjs/plugin/markdown/markdown.js"></script>
+<script src="/home/karl/.emacs.d/.local/straight/build-27.1/revealjs/plugin/notes/notes.js"></script>
+<script src="/home/karl/.emacs.d/.local/straight/build-27.1/revealjs/plugin/search/search.js"></script>
+<script src="/home/karl/.emacs.d/.local/straight/build-27.1/revealjs/plugin/zoom/zoom.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+
+overview: true,
+
+transition: 'convex',
+transitionSpeed: 'default',
+
+// Plugins with reveal.js 4.x
+plugins: [ RevealMarkdown, RevealNotes, RevealSearch, RevealZoom ],
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+]
+
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>C++ 2 Week 3</title>
+<meta name="author" content="kstatz@colum.edu"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/black.css" id="theme"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide">
+<h1 class="title">C++ 2 Week 3</h1><h2 class="author">kstatz@colum.edu</h2><p class="date">Created: 2021-02-10 Wed 18:34</p>
+</section>
+<section id="table-of-contents-section">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-1">1. Inheritance</a></li>
+<li><a href="#/slide-2">2. Basic Inheritance</a></li>
+<li><a href="#/slide-3">3. Basic Concepts</a></li>
+<li><a href="#/slide-4">4. Multiple Inheritance</a></li>
+</ul>
+</div>
+</div>
+</section>
+<section>
+<section id="slide-1">
+<h2 id="1"><span class="section-number-2">1</span> Inheritance</h2>
+<p>
+Inheritance in Object Oriented Programming is a way to extend class definitions without modifying the original class. People have come up with all sorts of insane ways to use inheritance and polymorphism to do insane, evil, dastardly but overall brilliant things
+</p>
+</section>
+</section>
+<section>
+<section id="slide-2">
+<h2 id="2"><span class="section-number-2">2</span> Basic Inheritance</h2>
+<p>
+Inheritance is usually talked about in terms of Sub and Super classes. The Super class is also called the Parent class by some, often misguided, OOP programmers
+</p>
+
+<div id="org8f31d7f" class="figure">
+<p><img src="file:///tmp/babel-I0Wk7A/plantuml-AEXmHP.png" alt="plantuml-AEXmHP.png" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-3">
+<h2 id="3"><span class="section-number-2">3</span> Basic Concepts</h2>
+<p>
+Abstract classes arent a &ldquo;thing&rdquo; in c++ in as much as they are able to be enforced by the language. They are Entirely enforced by convention. An abstract class is a class that has abstract members. They are generally marked as AbstractClassName to tell whoever is inheriting from them that they will need to implement some things.
+</p>
+
+<p>
+Virtual members are members that can be overriden by sub classes.
+</p>
+
+<p>
+members marked as protected are treated as private in the sub class.
+</p>
+</section>
+</section>
+<section>
+<section id="slide-4">
+<h2 id="4"><span class="section-number-2">4</span> Multiple Inheritance</h2>
+<p>
+Multiple Inheritance is supported by c++. This powerful feature should be used with extreme caution. It can get you out of a jam but conceptually makes no sense if we think about inheritance in the traditional way. In what way can a thing be a fruit and an automobile?
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/search/search.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+
+overview: true,
+
+transition: 'convex',
+transitionSpeed: 'default',
+
+// Plugins with reveal.js 4.x
+plugins: [ RevealMarkdown, RevealNotes, RevealSearch, RevealZoom ],
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+]
+
+});
+</script>
+</body>
+</html>
