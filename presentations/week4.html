@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>C++ 2 Week 4</title>
+<meta name="author" content="kstatz@colum.edu"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/black.css" id="theme"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide">
+<h1 class="title">C++ 2 Week 4</h1><h2 class="author">kstatz@colum.edu</h2><p class="date">Created: 2021-02-17 Wed 18:27</p>
+</section>
+<section id="table-of-contents-section">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-1">1. Intro/Recap</a></li>
+<li><a href="#/slide-2">2. Composition</a>
+<ul>
+<li><a href="#/slide-2-1">2.1. Code Example</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<section>
+<section id="slide-1">
+<h2 id="1"><span class="section-number-2">1</span> Intro/Recap</h2>
+<p>
+To date, we have covered the basic OOP method for adding behavior to a class via inheritance. Inheritance is an effective tool for designing class behavior but it has some drawbacks.
+</p>
+<ul>
+<li>Lacks Flexibility</li>
+<li>Complex</li>
+<li>Hard To Understand</li>
+<li>with multiple inheritance can be dangerous</li>
+
+</ul>
+
+<p>
+Often times when we use inheritance we use it for the wrong reasons, we try and reduce the amount of typing. Which isn&rsquo;t always a positive.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-2">
+<h2 id="2"><span class="section-number-2">2</span> Composition</h2>
+<p>
+Composition is a class structure that favors properties over inheritance. Said more simply Classes should have dependencies on other classes to provide behavior instead of overriding base class methods.
+Full disclosure, I find this a better, cleaner way of organizing software than long and often complex inheritance trees. The concept is basically we create classes that do one thing and add them as dependencies to our class doing &ldquo;business&rdquo; logic. This term is older but general enough that I still use it because its descriptive
+</p>
+
+</section>
+<section id="slide-2-1">
+<h3 id="2-1"><span class="section-number-3">2.1</span> Code Example</h3>
+<div class="org-src-container">
+
+<pre class="src src-c">class <span style="color: #DFDFDF; font-weight: bold;">FileParser</span> *<span style="color: #bbc2cf;">m_parser</span>;
+class <span style="color: #DFDFDF; font-weight: bold;">AccountingMath</span> *<span style="color: #bbc2cf;">m_accountingMath</span>;
+<span style="color: #DFDFDF; font-weight: bold;">class</span> <span style="color: #bbc2cf;">AccountingLedger</span> <span style="color: #0170bf;">{</span>
+<span style="color: #bbc2cf;">private</span>:
+  <span style="color: #DFDFDF; font-weight: bold;">int</span> <span style="color: #DFDFDF; font-weight: bold;">getBalance</span><span style="color: #c678dd;">(</span><span style="color: #DFDFDF; font-weight: bold;">int</span> <span style="color: #bbc2cf;">accountId</span><span style="color: #c678dd;">)</span> <span style="color: #c678dd;">{</span>
+    std::vector&lt;Row&gt; rows = m_parser.getFile<span style="color: #98be65;">(</span>accountId<span style="color: #98be65;">)</span>;
+    this-&gt;m_accountingMath.sum<span style="color: #98be65;">(</span>rows<span style="color: #98be65;">)</span>;
+  <span style="color: #c678dd;">}</span>
+
+<span style="color: #bbc2cf;">public</span>:
+  AccountingLedger<span style="color: #c678dd;">(</span><span style="color: #DFDFDF; font-weight: bold;">FileParser</span> *<span style="color: #bbc2cf;">parser</span>, <span style="color: #DFDFDF; font-weight: bold;">AccountingMath</span> *<span style="color: #bbc2cf;">accountingMath</span><span style="color: #c678dd;">)</span> <span style="color: #c678dd;">{</span>
+    this-&gt;m_parser = parser;
+    this-&gt;m_accountingMath = accountingMath;
+  <span style="color: #c678dd;">}</span>
+<span style="color: #0170bf;">}</span>;
+</pre>
+</div>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/search/search.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+
+overview: true,
+
+transition: 'convex',
+transitionSpeed: 'default',
+
+// Plugins with reveal.js 4.x
+plugins: [ RevealMarkdown, RevealNotes, RevealSearch, RevealZoom ],
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+]
+
+});
+</script>
+</body>
+</html>

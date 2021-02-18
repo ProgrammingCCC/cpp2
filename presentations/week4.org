@@ -1,0 +1,35 @@
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+title: C++ 2 Week 4
+#+author: kstatz@colum.edu
+* Intro/Recap
+To date, we have covered the basic OOP method for adding behavior to a class via inheritance. Inheritance is an effective tool for designing class behavior but it has some drawbacks.
++ Lacks Flexibility
++ Complex
++ Hard To Understand
++ with multiple inheritance can be dangerous
+
+Often times when we use inheritance we use it for the wrong reasons, we try and reduce the amount of typing. Which isn't always a positive.
+
+* Composition
+Composition is a class structure that favors properties over inheritance. Said more simply Classes should have dependencies on other classes to provide behavior instead of overriding base class methods.
+Full disclosure, I find this a better, cleaner way of organizing software than long and often complex inheritance trees. The concept is basically we create classes that do one thing and add them as dependencies to our class doing "business" logic. This term is older but general enough that I still use it because its descriptive
+
+** Code Example
+
+#+BEGIN_SRC c
+class FileParser *m_parser;
+class AccountingMath *m_accountingMath;
+class AccountingLedger {
+private:
+  int getBalance(int accountId) {
+    std::vector<Row> rows = m_parser.getFile(accountId);
+    this->m_accountingMath.sum(rows);
+  }
+
+public:
+  AccountingLedger(FileParser *parser, AccountingMath *accountingMath) {
+    this->m_parser = parser;
+    this->m_accountingMath = accountingMath;
+  }
+};
+#+END_SRC
