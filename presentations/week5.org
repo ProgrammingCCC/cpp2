@@ -1,0 +1,36 @@
+#+title: C++ 2 Week 5
+#+author: kstatz@colum.edu
+* Main Topics
++ Introduction to templates
++ Template Specialization
+* Introduction
+Templates are c++'s way of doing generic programming. Generic programming is where you dont always know the type at implementation time. Ordinarily in "business" code, we almost are always coding to a known type. This isnt always true when you are building code to help other developers or you just want to save yourself some time and make super generic base classes
+* Examples
+#+BEGIN_SRC cpp
+template <class T>
+T add(T lhs, T rhs) {
+    return lhs + rhs;
+}
+#+END_SRC
+
+This code snippet is a very basic example of how templates can be used to make a function more "generic". This function, instead of taking in an integer or a long we take any type and try and add them together
+* Caveats
+For this to work, whatever is passed in must overload the operator for addition. If that isnt available, this code will fail to compile.
+* Usage
+#+BEGIN_SRC cpp
+int result = add<int>(1, 2);
+float result = add<float>(1.0, 2.0);
+// wont compile since std::string doesnt implement the `+` operator
+std::string result = add<std::string>("hello", "world");
+#+END_SRC
+* Explanation
+C++ doesnt have a runtime so types have to be known at compile time. This means that every usage of a template for a new type results in the compiler generating code for that type. In the Above example the compiler will generate the below two methods respectively
+#+BEGIN_SRC cpp
+int add(int lhs, int rhs) {
+    return lhs + rhs;
+}
+
+float add(int lhs, int rhs) {
+    return lhs + rhs;
+}
+#+END_SRC
