@@ -1,0 +1,36 @@
+#+title: CPP II: Week 6
+#+author: kstatz@colum.edu
+* Auto Madness
+Using the *auto* type for function returns and variable declarations is generally considered to be a good practice since the compiler is generally better at deducing types than we are at typing them. But take the following example
+
+#+BEGIN_SRC cpp
+auto vect = {1, 2, 3, 4, 5};
+#+END_SRC
+
+Since we initialize std::vector<T> like this it would only seem natural that this would deduce the type as a vector, instead it initializes it as a std::initializer_list<T> so your code will probably compile but fail at runtime.
+* Testing types
+Sometimes it is a good idea to play with auto but if you ever get confused or think it is doing something you didnt expect you can use the *decltype/1* function.
+
+#+BEGIN_SRC cpp
+std::vector<int> myVect = {1, 2, 3, 4, 5};
+auto maybeVect = {1, 2, 3, 4, 5, 6};
+
+decltype(maybeVect) type;
+#+END_SRC
+* Compile Time Constants
+
+We have used the const keyword for a while. it tells the compiler that this value cannot change. This is slightly different behavior than our beloved const in C# where const means that it is a compile time constant. in c++ we have two options
+* Macros
+#+BEGIN_SRC cpp
+#define X 10;
+#+END_SRC
+
+precompiler macros are a c holdover where we can define a macro and wherever we use the symbol X it replaces it with 10. Nifty but has some issues. They are not type safe and you can lose the symbol at compile time.
+* constexpr
+
+#+BEGIN_SRC cpp
+constexpr auto x = 10;
+#+END_SRC
+this is a compile time expression that sets x = 10 and is type safe and efficient.
+* Drawbacks
+Compile time anything is used to  speed up running the program since we can pre-calculate things at compile time, saving CPU cylces. But it can lead to higher compile times and the usage of constexpr has changed in later versions
