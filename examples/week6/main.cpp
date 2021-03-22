@@ -60,7 +60,7 @@ struct Bank {
   }
 };
 
-std::string foo2(int n) { return n > 10 ? "foo" : "bar"; }
+constexpr bool foo2(int n) { return n > 10 ? true : false; }
 
 int main() {
   // c++ 17 only
