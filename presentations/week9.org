@@ -1,0 +1,34 @@
+* Variable Lifetimes
+
+In any language that allows dynamic allocation of memory variables get what is known as a lifetime. The lifetime of a variable is determined by when it is created and when it is no longer needed. Variables with a global or static lifetime live for the length of the program's runtime.
+
+* Dynamic Allocations
+Doing all of your dynamic allocations at the start of your program is one way to optimize your program from a runtime speed and predictability standpoint but its often hard to write software this way since dynamic allocations are sometimes required. For most sane programs we allow dynamic allocations but use them sparingly because of their unpredictable nature.
+
+* Unique Pointers
+
+Unique pointers semantically follow the single ownership rule. Ownership with pointers boils down to who is responsible for cleaning this up. Barney would approve. Unique pointers cannot be copied, they can only be moved.
+
+#+BEGIN_SRC cpp
+std::unique_ptr<int> myPtr = std::make_unique<int>(42);
+
+std::unique_ptr<int> myPtr = std::make_unique<int>(new int(42));
+#+END_SRC
+
+* Shared Pointers
+
+Shared pointers are a bit more traditional, but they do have a small amount of overhead. Shared pointers can be borrowed from the original as many times as you like, this will just increase the internal reference counter on the object. Once all of the borrowed instances are out of scope, then the original can be de-allocated.
+
+#+BEGIN_SRC cpp
+std::shared_ptr<int> myPtr = std::make_shared<int>(42);
+
+// reference count is at 2
+std::shared_ptr<int> copy = myPtr;
+#+END_SRC
+* Unit Testing
+
+Unit testing is an important stage of the SDLC (Software Development Lifecycle) and can save your booty if used correctly. The problem is most people do it wrong. Unit tests test the smallest valuable unit of business that your software has. This definition is super vague and it really becomes a judgement call on weather or not to write a unit test, an integration test or something fancier requiring a model checker.
+
+
+* Advice on unit testing
+My general rule is to write unit tests for mission critical components and something i can statically assert. Functions should be Pure for unit testing to be successful. If you are ever required to meet a certain coverage number, question it.
