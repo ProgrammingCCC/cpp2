@@ -1,0 +1,99 @@
+#+title: Week 10
+#+author: Karl Statz
+#+email: kstatz@colum.edu
+* Threading (dun dun dun)
+Threads are a basic building block of modern computing. They are what allow us to run more than one thing at a time. For being conceptually simple there are a lot of, often overloaded, terms that come up.
+* Physical Threads
+
+When I use the term Physical Thread i am referring to the CPU itself and the threading capabilities printed on the dye. When you go buy a computer you will usually see Core/Thread count printed on the label. This is the physical limit of threads. it is usually Cores x 2. So a dual core cpu will traditionally have 4 threads and up and up.
+
+* Kernel Threading
+
+Given that the operating system talks to the hardware for us in memory, it would make sense that it does the same thing for cpu instructions especially threads. Your computer may only have 4/8/ even 16 threads but i bet you have more things running at one time than you have physical threads. This is by using the Operating System to schedule work on the physical threads using interrupts, thus allowing us to do even more work at one time.
+
+
+* Logical Threads
+When i use the term logical thread I am usually referring to how the operating system schedules work on the physical threads. This is often expensive and has a hard limit based on what CPU you have. Now we have laptops with 8 cores/16 threads so its less of a problem in consumer electronics but in ye olden days it was a lot of stress on a system to schedule new work and slowdowns were common
+
+
+* Parallel Coding
+
+Threading has two main uses. The first is to enable you to take advantage of more hardware for a task. This is parallel processing. I have N items and i want to work through them quicker so i spin up (n / 2) threads to, in theory, work through the backlog twice as fast.
+
+* Handler
+
+#+BEGIN_SRC cpp
+void handle_simple() {
+  int val = g_work.back();
+  std::cout << val << std::endl;
+  g_result.push_back(val);
+  g_work.pop_back();
+}
+
+}
+#+END_SRC
+
+* Threading Dispatch
+
+#+BEGIN_SRC cpp
+int main() {
+
+  g_work = {1, 2, 3, 4};
+
+  std::vector<std::thread> workers;
+  for (int i = 0; i < 4; i++) {
+    std::thread t1(handle_simple);
+    workers.push_back(std::move(t1));
+  }
+
+  for (std::thread &w : workers) {
+    if (w.joinable())
+      w.join();
+  }
+
+  for (auto r : g_result) {
+    std::cout << r << std::endl;
+  }
+#+END_SRC
+
+* Explanation
+This code looks like it should printed
+#+BEGIN_QUOTE
+4 3 2 1
+#+END_QUOTE
+
+but it prints
+
+#+BEGIN_QUOTE
+4 4 4 4
+#+END_QUOTE
+
+This is because none of the collections in the STL are thread safe.
+
+* This time with locking
+
+#+BEGIN_SRC cpp
+std::vector<int> g_work;
+std::vector<int> g_result;
+
+std::mutex g_mutex;
+
+void handle() {
+
+  std::lock_guard<std::mutex> guard(g_mutex);
+  int val = g_work.back();
+  std::cout << val << std::endl;
+  g_result.push_back(val);
+  g_work.pop_back();
+}
+#+END_SRC
+
+* What is a mutex?
+
+A mutex is a mutually exclusive semaphore. Semaphores are a simple data structure that allow a certain amount of threads to access a shared resource. A mutually exclusive semaphore only allows 1 thread at a time.
+
+
+
+* What is joining a thread?
+
+Joining a thread is where we wait for it to complete, We should always check if a thread is joinable (ie it didnt end early due to failure) before we join
